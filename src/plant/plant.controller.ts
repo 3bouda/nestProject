@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -41,8 +40,8 @@ export class PlantsController {
   ): Promise<Plant> {
     return this.plantsService.updatePlant(plantId, updatePlantDto);
   }
-  @Delete(':plantId')
-  remove(@Param('plantId', ParseIntPipe) plantId: number): Promise<Plant> {
+  @Delete(':id')
+  async remove(@Param('id') plantId: string): Promise<Plant> {
     return this.plantsService.remove(plantId);
   }
 }

@@ -28,18 +28,16 @@ export class PlantsService {
     plantUpdates: UpdatePlantDto,
   ): Promise<Plant> {
     await this.plantRepository.findOneAndUpdate({ plantId }, plantUpdates);
-    const updatedPlant = await this.plantRepository.findOne({
-      where: { plantId },
-    });
+    const updatedPlant = await this.plantRepository.findOne({ plantId });
     if (!updatedPlant) {
       throw new NotFoundException(`Plant with ID ${plantId} not found`);
     }
     return updatedPlant;
   }
-  async remove(plantId: number): Promise<Plant> {
+  async remove(plantId: string): Promise<Plant> {
     const result = await this.plantRepository.findByIdAndDelete(plantId);
     if (!result) {
-      throw new NotFoundException(`Sheep with ID ${plantId} not found`);
+      throw new NotFoundException(`Plant with ID ${plantId} not found`);
     }
     return result;
   }

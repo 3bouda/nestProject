@@ -28,7 +28,7 @@ export class PlantRepository {
   ): Promise<Plant> {
     return this.plantModel.findOneAndUpdate(plantFilterQuery, plant);
   }
-  async findByIdAndDelete(plantId: number): Promise<Plant> {
+  async findByIdAndDelete(plantId: string): Promise<Plant> {
     return this.plantModel.findByIdAndDelete(plantId);
   }
 }
